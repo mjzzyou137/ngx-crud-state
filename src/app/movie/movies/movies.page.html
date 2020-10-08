@@ -1,0 +1,58 @@
+<div
+  class="card shadow-sm rounded-0  bg-white py-3"
+  style="padding-left: 40px;"
+>
+  <p class="font-weight-bold mb-0">Movie Management</p>
+  <div>
+    <i
+      [routerLink]="['/']"
+      class="fa fa-home cursor-pointer"
+      aria-hidden="true"
+    ></i>
+    >
+    <span>Movie Management</span>
+  </div>
+</div>
+
+<ng-container *ngIf="movies$ | async as movies; else loadingTmp">
+  <div
+    class="shadow-sm p-3 bg-white m-4 d-flex cursor-pointer"
+    *ngFor="let item of movies"
+    [routerLink]="['/movies',item.maPhim,'detail']"
+  >
+    <div class="left">
+      <img
+        style="width: 250px; height: 140px; object-fit: cover;"
+        [src]="item.hinhAnh"
+        onerror="onerror=null; src='assets/no-profile-pic.jpg'"
+        alt=""
+      />
+    </div>
+    <div class="right ml-3 d-flex align-items-center">
+      <div>
+        <h4 class="mb-0 d-flex align-items-center">
+          {{ item.tenPhim}}
+
+          <span class="  bg-primary  ml-2">
+            {{ item.maPhim}}
+          </span>
+        </h4>
+        <p class="mb-0">
+          {{ item.moTa }} Lorem ipsum dolor, sit amet consectetur adipisicing
+          elit. Ratione labore nam illo soluta eum ad.
+        </p>
+        <p class="mb-0">
+          <i class="far fa-clock mr-1"></i>{{ item.ngayKhoiChieu | date }}
+        </p>
+      </div>
+    </div>
+  </div>
+</ng-container>
+
+<ng-template #loadingTmp>
+  <div
+    class="d-flex justify-content-center center align-items-center h-100 w-100"
+  >
+    <div class="lds-hourglass"></div>
+  </div>
+</ng-template>

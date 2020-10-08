@@ -1,0 +1,75 @@
+<div class="wrapper d-flex align-items-stretch">
+  <nav id="sidebar" [class.active]="active">
+    <button class="custom-menu bg-transparent border-0">
+      <button type="button" (click)="active = !active" class="btn  btn-primary">
+        <i class="fa fa-bars"></i>
+      </button>
+    </button>
+    <div class="p-4 pt-5">
+      <h3 class="mb-5 text-white">
+        <a class="text-white font-weight-bold logo" [routerLink]="['/']"
+          >Man Nguyen</a
+        >
+      </h3>
+      <ul class="list-unstyled components mb-5">
+        <li class="cursor-pointer" [routerLink]="['/users']">
+          <a><i class="fas fa-users pr-2"></i>User Management</a>
+        </li>
+        <li class="cursor-pointer" [routerLink]="['/movies']">
+          <a><i class="fas fa-video pr-2"></i>Movie Management</a>
+        </li>
+      </ul>
+
+      <div class="mb-5">
+        <h3 class="h6">Subscribe for newsletter</h3>
+        <form action="#" class="colorlib-subscribe-form">
+          <div class="form-group d-flex">
+            <div class="icon"><span class="icon-paper-plane"></span></div>
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Enter Email Address"
+            />
+          </div>
+        </form>
+      </div>
+
+      <div class="footer">
+        <p>
+          Copyright &copy;
+          <script>
+            document.write(new Date().getFullYear());
+          </script>
+          All rights reserved
+        </p>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Page Content  -->
+  <div id="content" style="background: rgb(245, 247, 248);">
+    <div class="d-flex bg-white mb-3 py-4  shadow-sm w-100 ">
+      <div class="d-block ml-auto">
+        <ng-container *ngIf="userLogin$ | async as userLogin; else login">
+          <button
+            class="btn  rounded-0 mr-2 login text-primary font-weight-bold"
+          >
+            <i class="fas fa-user-circle "></i>
+            {{ userLogin.taiKhoan }}
+          </button>
+          <button class="btn rounded-0 mr-4 logOut" (click)="logOut()">
+            LOG OUT
+          </button>
+        </ng-container>
+
+        <ng-template #login>
+          <button class="btn  rounded-0 mr-4 login" [routerLink]="['/login']">
+            LOGIN
+          </button>
+        </ng-template>
+      </div>
+    </div>
+
+    <router-outlet></router-outlet>
+  </div>
+</div>

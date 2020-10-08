@@ -1,0 +1,98 @@
+<div
+  class="card shadow-sm rounded-0  bg-white py-3"
+  style="padding-left: 40px;"
+>
+  <p class="font-weight-bold mb-0">Movie Detail</p>
+  <div>
+    <i
+      [routerLink]="['/']"
+      class="fa fa-home cursor-pointer"
+      aria-hidden="true"
+    ></i>
+    >
+    <span class="cursor-pointer font-weight-bold" [routerLink]="['/movies']"
+      >Movie Management</span
+    >
+    >
+    <span>Movie Detail</span>
+  </div>
+</div>
+<div class="container mt-4" *ngIf="movie$ | async as item; else loadingTmp">
+  <div class="row">
+    <div class="col-md-12 col-lg-3" style="height: 350px">
+      <img
+        style=" object-fit: cover"
+        class="w-100 h-100 d-block"
+        [src]="item.hinhAnh"
+        onerror="onerror=null; src='assets/no-profile-pic.jpg'"
+        alt=""
+      />
+    </div>
+    <div class="col-md-12 col-lg-9">
+      <div class="d-flex align-items-center">
+        <h4
+          class="mb-0 font-weight-bold text-uppercase"
+          style="letter-spacing: 2px"
+        >
+          {{ item.tenPhim}}
+        </h4>
+        <span class="bg-primary ml-2">
+          {{ item.maPhim}}
+        </span>
+      </div>
+      <p>
+        {{ item.maPhim}} Lorem ipsum dolor sit amet consectetur adipisicing
+        elit. Tempora illo vitae fugiat distinctio, incidunt hic. Lorem ipsum
+        dolor sit amet.
+      </p>
+      <div>
+        <div class="d-flex">
+          <p class="width-120px">Đạo diễn:</p>
+          <span>
+            <b>
+              Hong Won Chan
+            </b>
+          </span>
+        </div>
+        <div class="d-flex">
+          <p class="width-120px">Diễn viên:</p>
+          <span>
+            <b>
+              Hwang Jung Min, Lee Jung Jae
+            </b>
+          </span>
+        </div>
+        <div class="d-flex">
+          <p class="width-120px">Khởi chiếu:</p>
+          <span>
+            <b> {{ item.ngayKhoiChieu | date }} </b>
+          </span>
+        </div>
+        <div class="d-flex">
+          <p class="width-120px">Thời lượng:</p>
+          <span>
+            <b>
+              120 phút
+            </b>
+          </span>
+        </div>
+      </div>
+      <div class="row ml-1 mt-2">
+        <button class="btn btn-primary rounded-0">
+          VIEW TRAILER
+        </button>
+        <button class="btn btn-success rounded-0">
+          BOOKING TICKET
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #loadingTmp>
+  <div
+    class="d-flex justify-content-center center align-items-center h-100 w-100"
+  >
+    <div class="lds-hourglass"></div>
+  </div>
+</ng-template>
